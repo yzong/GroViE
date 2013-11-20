@@ -9,6 +9,7 @@ package de.grovie.engine;
  * the scene graph is constructed manually instead of synchronizing with the
  * database.
  * In server mode, the engine synchronizes its data with a remote database.
+ * 
  * @author yong
  *
  */
