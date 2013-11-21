@@ -13,20 +13,20 @@ public class GvSandbox {
 		//get absolute path to database location
 		
 		//create GroViE vis. engine
-		GvEngine engine = GvEngine.getInstance(); //uses embedded db by default
+		GvEngine gvEngine = GvEngine.getInstance(); //uses embedded db by default
 		
 		//tell GroViE the classes to use for the opengl rendering, etc.
-		GvGLEventListener sandboxListener = new GvGLEventListener();
-		engine.setEventListener(sandboxListener);
+		GvGLEventListener gvGLListener = new GvGLEventListener();
+		gvEngine.setEventListener(gvGLListener);
 		
 		//start the visualization engine
-		if(engine.getMode() == GrovieEngineMode.EMBEDDED)
+		if(gvEngine.getMode() == GrovieEngineMode.EMBEDDED)
 		{
-			engine.start("C:\\Users\\yong\\db"); //TODO: replace with path obtained from pop up dialog
+			gvEngine.start("C:\\Users\\yong\\db"); //TODO: replace with path obtained from pop up dialog
 		}
 		
 		//create and run rendering thread
-		new GvWindow(engine);
+		new GvWindow(gvEngine);
 		
 		//obtain graph db from engine. 
 		//if multi thread, create worker threads. give threads reference to db.
