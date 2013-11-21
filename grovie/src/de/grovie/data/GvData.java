@@ -1,5 +1,5 @@
 package de.grovie.data;
 
-public class GrovieData {
+public class GvData {
 
 }

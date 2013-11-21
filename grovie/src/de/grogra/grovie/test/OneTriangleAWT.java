@@ -5,7 +5,7 @@ import javax.media.opengl.GL2;
 import javax.media.opengl.glu.GLU;
 
 public class OneTriangleAWT {
-	protected static void setup( GL2 gl2, int width, int height ) {
+	public static void setup( GL2 gl2, int width, int height ) {
         gl2.glMatrixMode( GL2.GL_PROJECTION );
         gl2.glLoadIdentity();
 
@@ -19,7 +19,7 @@ public class OneTriangleAWT {
         gl2.glViewport( 0, 0, width, height );
     }
 
-    protected static void render( GL2 gl2, int width, int height ) {
+    public static void render( GL2 gl2, int width, int height ) {
         gl2.glClear( GL.GL_COLOR_BUFFER_BIT );
 
         // draw a triangle filling the window

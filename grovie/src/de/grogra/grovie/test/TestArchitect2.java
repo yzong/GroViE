@@ -26,8 +26,8 @@ import com.tinkerpop.blueprints.TransactionalGraph;
 import com.tinkerpop.blueprints.Vertex;
 
 import de.grogra.grovie.test.TestDB.RelTypes;
-import de.grovie.db.GrovieDb;
-import de.grovie.exception.GrovieExceptionDbUnrecognizedImpl;
+import de.grovie.db.GvDb;
+import de.grovie.exception.GvExceptionDbUnrecognizedImpl;
 
 
 
@@ -38,16 +38,16 @@ import de.grovie.exception.GrovieExceptionDbUnrecognizedImpl;
 public class TestArchitect2 {
 
 	//public static GraphDatabaseService graphDb;
-	public static GrovieDb graphDb;
+	public static GvDb graphDb;
 	public static String DB_PATH = "C:\\Users\\yong\\db";
 	static Graph graph;
 	static TransactionalGraph graphTrans;
 
 	/**
 	 * @param args
-	 * @throws GrovieExceptionDbUnrecognizedImpl 
+	 * @throws GvExceptionDbUnrecognizedImpl 
 	 */
-	public static void main(String[] args) throws GrovieExceptionDbUnrecognizedImpl {
+	public static void main(String[] args) throws GvExceptionDbUnrecognizedImpl {
 
 		System.out.println("TestArchitect Main");
 
@@ -72,7 +72,7 @@ public class TestArchitect2 {
 	}
 	
 	
-	public TestArchitect2() throws GrovieExceptionDbUnrecognizedImpl
+	public TestArchitect2() throws GvExceptionDbUnrecognizedImpl
 	{
 		System.out.println("TestArchitect Main");
 
@@ -95,9 +95,9 @@ public class TestArchitect2 {
 		}
 	}
 
-	private static void createDB() throws GrovieExceptionDbUnrecognizedImpl
+	private static void createDB() throws GvExceptionDbUnrecognizedImpl
 	{
-		graphDb = GrovieDb.getInstance(DB_PATH);
+		graphDb = GvDb.getInstance(DB_PATH);
 		graph = graphDb.getGraph();
 		graphTrans = (TransactionalGraph)graph;
 	}

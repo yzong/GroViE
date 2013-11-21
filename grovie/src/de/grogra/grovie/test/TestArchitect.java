@@ -50,7 +50,7 @@ public class TestArchitect {
 		System.out.println("Test db access- 1. same thread - end");
 
 		System.out.println("Test JOGL");
-		//testGLAWT();
+		testGLAWT();
 		
 		System.out.println("Test JOGL End");
 

@@ -13,13 +13,13 @@ import com.tinkerpop.blueprints.Graph;
 import com.tinkerpop.blueprints.TransactionalGraph;
 import com.tinkerpop.blueprints.Vertex;
 
-import de.grovie.db.GrovieDb;
+import de.grovie.db.GvDb;
 
 public class TestDB2 implements Runnable{
 
 	Thread t;
 	
-	GrovieDb graphDb;
+	GvDb graphDb;
 	Graph graph;
 	TransactionalGraph graphTrans;
 	
@@ -31,7 +31,7 @@ public class TestDB2 implements Runnable{
 		CONTAINED_IN, KNOWS
 	}
 
-	public TestDB2(GrovieDb db)
+	public TestDB2(GvDb db)
 	{
 		graphDb = db;
 		graph = db.getGraph();

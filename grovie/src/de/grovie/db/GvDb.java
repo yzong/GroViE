@@ -3,7 +3,7 @@ package de.grovie.db;
 import com.tinkerpop.blueprints.Graph;
 import com.tinkerpop.blueprints.impls.neo4j.Neo4jGraph;
 
-import de.grovie.exception.GrovieExceptionDbUnrecognizedImpl;
+import de.grovie.exception.GvExceptionDbUnrecognizedImpl;
 
 /**
  * This class provides database access to the package de.grovie.data.
@@ -12,7 +12,7 @@ import de.grovie.exception.GrovieExceptionDbUnrecognizedImpl;
  * 
  * @author yong
  */
-public class GrovieDb {
+public class GvDb {
 
 	//types of database implementation (implementing Blueprints API)
 	public enum GrovieDbImpl
@@ -25,7 +25,7 @@ public class GrovieDb {
 	
 	private final static GrovieDbImpl lGrovieDbImplDefault = GrovieDbImpl.NEO4J; 
 	
-	private static GrovieDb lInstance;			//singleton instance of GrovieDb
+	private static GvDb lInstance;			//singleton instance of GrovieDb
 	private static GrovieDbImpl lGrovieDbImpl;	//database implementation (e.g. Neo4j, Titan, etc.)
 	
 	private Graph lGraph; //instance of database graph
@@ -33,9 +33,9 @@ public class GrovieDb {
 	/**
 	 * Constructor
 	 * @param dbPathAbs
-	 * @throws GrovieExceptionDbUnrecognizedImpl
+	 * @throws GvExceptionDbUnrecognizedImpl
 	 */
-	private GrovieDb(String dbPathAbs) throws GrovieExceptionDbUnrecognizedImpl
+	private GvDb(String dbPathAbs) throws GvExceptionDbUnrecognizedImpl
 	{
 		lGraph = createDb(dbPathAbs, lGrovieDbImplDefault);
 		lGrovieDbImpl = lGrovieDbImplDefault;
@@ -45,15 +45,15 @@ public class GrovieDb {
 	 * Constructor
 	 * @param dbPathAbs
 	 * @param impl
-	 * @throws GrovieExceptionDbUnrecognizedImpl
+	 * @throws GvExceptionDbUnrecognizedImpl
 	 */
-	private GrovieDb(String dbPathAbs, GrovieDbImpl impl) throws GrovieExceptionDbUnrecognizedImpl
+	private GvDb(String dbPathAbs, GrovieDbImpl impl) throws GvExceptionDbUnrecognizedImpl
 	{
 		try{
 			lGraph = createDb(dbPathAbs, impl);
 			lGrovieDbImpl = impl;
 		}
-		catch(GrovieExceptionDbUnrecognizedImpl err)
+		catch(GvExceptionDbUnrecognizedImpl err)
 		{
 			lGraph = createDb(dbPathAbs, lGrovieDbImplDefault);
 			lGrovieDbImpl = lGrovieDbImplDefault;
@@ -65,25 +65,25 @@ public class GrovieDb {
 	 * @param dbPathAbs
 	 * @param impl
 	 * @return instance of graph database
-	 * @throws GrovieExceptionDbUnrecognizedImpl
+	 * @throws GvExceptionDbUnrecognizedImpl
 	 */
-	private Graph createDb(String dbPathAbs, GrovieDbImpl impl) throws GrovieExceptionDbUnrecognizedImpl
+	private Graph createDb(String dbPathAbs, GrovieDbImpl impl) throws GvExceptionDbUnrecognizedImpl
 	{
 		if(impl==GrovieDbImpl.NEO4J)
 			return new Neo4jGraph(dbPathAbs);
 		else
-			throw new GrovieExceptionDbUnrecognizedImpl("GrovieExceptionDb unrecognized database implementation: " + impl);
+			throw new GvExceptionDbUnrecognizedImpl("GrovieExceptionDb unrecognized database implementation: " + impl);
 	}
 
 	/**
 	 * Get singleton instance of GrovieDb
 	 * @param dbPathAbs
 	 * @return
-	 * @throws GrovieExceptionDbUnrecognizedImpl
+	 * @throws GvExceptionDbUnrecognizedImpl
 	 */
-	public static GrovieDb getInstance(String dbPathAbs) throws GrovieExceptionDbUnrecognizedImpl {
+	public static GvDb getInstance(String dbPathAbs) throws GvExceptionDbUnrecognizedImpl {
 		if (lInstance == null) {
-			lInstance = new GrovieDb(dbPathAbs);
+			lInstance = new GvDb(dbPathAbs);
 		}
 		return lInstance;
 	}
@@ -93,11 +93,11 @@ public class GrovieDb {
 	 * @param dbPathAbs
 	 * @param impl
 	 * @return instance of GrovieDb
-	 * @throws GrovieExceptionDbUnrecognizedImpl
+	 * @throws GvExceptionDbUnrecognizedImpl
 	 */
-	public static GrovieDb getInstance(String dbPathAbs, GrovieDbImpl impl) throws GrovieExceptionDbUnrecognizedImpl {
+	public static GvDb getInstance(String dbPathAbs, GrovieDbImpl impl) throws GvExceptionDbUnrecognizedImpl {
 		if (lInstance == null) {
-			lInstance = new GrovieDb(dbPathAbs, impl);
+			lInstance = new GvDb(dbPathAbs, impl);
 		}
 		return lInstance;
 	}
