@@ -15,7 +15,7 @@ import de.grovie.exception.GvExceptionDbUnrecognizedImpl;
 public class GvDb {
 
 	//types of database implementation (implementing Blueprints API)
-	public enum GrovieDbImpl
+	public enum GvDbImpl
 	{
 		NEO4J,
 		INFINITE_GRAPH, //temp not in use
@@ -23,10 +23,10 @@ public class GvDb {
 		TITAN			//temp not in use
 	}
 	
-	private final static GrovieDbImpl lGrovieDbImplDefault = GrovieDbImpl.NEO4J; 
+	private final static GvDbImpl lGrovieDbImplDefault = GvDbImpl.NEO4J; 
 	
 	private static GvDb lInstance;			//singleton instance of GrovieDb
-	private static GrovieDbImpl lGrovieDbImpl;	//database implementation (e.g. Neo4j, Titan, etc.)
+	private static GvDbImpl lGrovieDbImpl;	//database implementation (e.g. Neo4j, Titan, etc.)
 	
 	private Graph lGraph; //instance of database graph
 	
@@ -47,7 +47,7 @@ public class GvDb {
 	 * @param impl
 	 * @throws GvExceptionDbUnrecognizedImpl
 	 */
-	private GvDb(String dbPathAbs, GrovieDbImpl impl) throws GvExceptionDbUnrecognizedImpl
+	private GvDb(String dbPathAbs, GvDbImpl impl) throws GvExceptionDbUnrecognizedImpl
 	{
 		try{
 			lGraph = createDb(dbPathAbs, impl);
@@ -67,9 +67,9 @@ public class GvDb {
 	 * @return instance of graph database
 	 * @throws GvExceptionDbUnrecognizedImpl
 	 */
-	private Graph createDb(String dbPathAbs, GrovieDbImpl impl) throws GvExceptionDbUnrecognizedImpl
+	private Graph createDb(String dbPathAbs, GvDbImpl impl) throws GvExceptionDbUnrecognizedImpl
 	{
-		if(impl==GrovieDbImpl.NEO4J)
+		if(impl==GvDbImpl.NEO4J)
 			return new Neo4jGraph(dbPathAbs);
 		else
 			throw new GvExceptionDbUnrecognizedImpl("GrovieExceptionDb unrecognized database implementation: " + impl);
@@ -95,7 +95,7 @@ public class GvDb {
 	 * @return instance of GrovieDb
 	 * @throws GvExceptionDbUnrecognizedImpl
 	 */
-	public static GvDb getInstance(String dbPathAbs, GrovieDbImpl impl) throws GvExceptionDbUnrecognizedImpl {
+	public static GvDb getInstance(String dbPathAbs, GvDbImpl impl) throws GvExceptionDbUnrecognizedImpl {
 		if (lInstance == null) {
 			lInstance = new GvDb(dbPathAbs, impl);
 		}
@@ -106,7 +106,7 @@ public class GvDb {
 	 * Get the database implementation type.
 	 * @return database implementation type (e.g. Neo4j, Titan, etc.)
 	 */
-	public static GrovieDbImpl getDbImpl()
+	public static GvDbImpl getDbImpl()
 	{
 		return lGrovieDbImpl;
 	}

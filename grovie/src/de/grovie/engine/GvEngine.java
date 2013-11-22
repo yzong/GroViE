@@ -19,7 +19,7 @@ import de.grovie.exception.GvExceptionEngineNoEventListener;
  */
 public class GvEngine {
 
-	public enum GrovieEngineMode
+	public enum GvEngineMode
 	{
 		IN_MEM,		//visualization engine without database 
 		EMBEDDED, 	//visualization engine with embedded database - default mode
@@ -28,7 +28,7 @@ public class GvEngine {
 
 	private static GvEngine lInstance;	//singleton instance of engine
 
-	private final GrovieEngineMode lMode;
+	private final GvEngineMode lMode;
 	
 	private GvDb lDb;		//graph database
 	private GvData lData;	//scene graph
@@ -37,29 +37,29 @@ public class GvEngine {
 
 	private GvEngine()
 	{
-		lMode = GrovieEngineMode.EMBEDDED;
+		lMode = GvEngineMode.EMBEDDED;
 	} 
 
-	private GvEngine(GrovieEngineMode mode)
+	private GvEngine(GvEngineMode mode)
 	{
 		this.lMode = mode;
 	} 
 
 	public static synchronized GvEngine getInstance() {
 		if (lInstance == null) {
-			lInstance = new GvEngine(GrovieEngineMode.EMBEDDED);
+			lInstance = new GvEngine(GvEngineMode.EMBEDDED);
 		}
 		return lInstance;
 	}
 
-	public static synchronized GvEngine getInstance(GrovieEngineMode mode) {
+	public static synchronized GvEngine getInstance(GvEngineMode mode) {
 		if (lInstance == null) {
 			lInstance = new GvEngine(mode);
 		}
 		return lInstance;
 	}
 	
-	public GrovieEngineMode getMode()
+	public GvEngineMode getMode()
 	{
 		return lMode;
 	}

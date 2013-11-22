@@ -1,7 +1,7 @@
 package de.grovie.sandbox;
 
 import de.grovie.engine.GvEngine;
-import de.grovie.engine.GvEngine.GrovieEngineMode;
+import de.grovie.engine.GvEngine.GvEngineMode;
 import de.grovie.exception.GvExceptionEngineNoEventListener;
 
 public class GvSandbox {
@@ -20,7 +20,7 @@ public class GvSandbox {
 		gvEngine.setEventListener(gvGLListener);
 		
 		//start the visualization engine
-		if(gvEngine.getMode() == GrovieEngineMode.EMBEDDED)
+		if(gvEngine.getMode() == GvEngineMode.EMBEDDED)
 		{
 			gvEngine.start("C:\\Users\\yong\\db"); //TODO: replace with path obtained from pop up dialog
 		}
